@@ -1,9 +1,25 @@
 package main
 
-import "github.com/lab/worker"
+import (
+	//"fmt"
+	//"time"
+	"lab/worker"
+)
 
 func main() {
 	cn := make(chan int)
+	qtdWorkers := 3
 
-	go worker.Worker(5, cn)
+	for y := range qtdWorkers{
+		go worker.Worker(y, cn)
+	}
+
+	//fmt.Println(<-cn)
+
+	//time.Sleep(time.Millisecond)
+	//fmt.Println("pong")
+
+	for y := range 95 {
+		cn <- y
+	}
 }
